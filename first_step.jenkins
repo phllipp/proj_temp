@@ -1,4 +1,4 @@
-!#groovy
+#!groovy
 //check hostname
 properties([disableConcurrentBuilds()])
 

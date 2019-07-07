@@ -16,4 +16,6 @@ pipeline {
         steps {
             sh 'ssh root@172.17.0.2 \'hostname\''
               }
-  }                       }
+  }                       
+  }
+}

@@ -11,30 +11,31 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '10', artifactNumToKeepStr: '10'))
         timestamps()
     }
-    stages {
-        stage("docker login") {
-            steps {
-                echo " ============== docker login =================="
-                withCredentials([usernamePassword(credentialsId: 'dockerhub_phillipp777', usernameVariable: 'phillipp777', passwordVariable: 'fucking777')]) {
-                    sh "docker login -u $USERNAME -p $PASSWORD"
-                }
-            }
-        }
+   // stages {
+     //   stage("docker login") {
+     //       steps {
+     //           echo " ============== docker login =================="
+     //           withCredentials([usernamePassword(credentialsId: 'dockerhub_phillipp777', usernameVariable: 'phillipp777', passwordVariable: 'fucking777')]) {
+     //               sh "docker login -u $USERNAME -p $PASSWORD"
+     //           }
+     //       }
+     //   }
         stage("create docker image") {
             steps {
                 echo " ============== start building image =================="
                 dir ('docker/toolbox') {
-                	sh 'docker build -t phillipp777/toolbox:latest . '
+                sh 'docker build .'
+                    //	sh 'docker build -t phillipp777/toolbox:latest . '
                 }
             }
         }
-        stage("docker push") {
-            steps {
-                echo " ============== start pushing image =================="
-                sh '''
-                docker push phillipp777/toolbox:latest
-                '''
-            }
-        }
-    }
+        //stage("docker push") {
+        //    steps {
+        //        echo " ============== start pushing image =================="
+        //        sh '''
+        //        docker push phillipp777/toolbox:latest
+        //        '''
+        //    }
+        //}
+    //}
 }

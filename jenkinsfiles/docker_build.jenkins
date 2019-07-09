@@ -31,7 +31,7 @@ pipeline {
         }
         stage("docker push") {
             steps {
-                echo " ============== start pushing image =================="
+                echo " ============== start pushing image ===============++==="
                 sh '''
                 docker push phillipp777/toolbox:latest
                 '''
